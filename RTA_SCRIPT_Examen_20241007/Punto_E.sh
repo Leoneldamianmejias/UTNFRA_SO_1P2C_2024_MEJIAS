@@ -13,7 +13,7 @@ echo "Chassis Information" >> /home/vagrant/repogit/UTNFRA_SO_1P2C_2024_MEJIAS/R
 
 sudo dmidecode -t chassis | grep Manufacturer >> /home/vagrant/repogit/UTNFRA_SO_1P2C_2024_MEJIAS/RTA_ARCHIVOS_Examen_20241007/Filtro_Basico.txt
 sleep 2
-echo"Resultado:"
+echo "Resultado:"
 
 cat /home/vagrant/repogit/UTNFRA_SO_1P2C_2024_MEJIAS/RTA_ARCHIVOS_Examen_20241007/Filtro_Basico.txt
 
