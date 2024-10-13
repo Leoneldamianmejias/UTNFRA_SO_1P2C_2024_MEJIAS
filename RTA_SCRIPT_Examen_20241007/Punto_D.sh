@@ -1,42 +1,28 @@
 #!/bin/bash
 
-# Crear el directorio principal
-echo "Creando repositorios..."
+# Obtener el nombre del usuario actual
+usuario=$(whoami)
 
-sudo mkdir -p ~/Estructura_Asimetrica/{correo,clientes}
+# Crear el directorio principal en el home del usuario
+echo "Creando repositorios en /home/${usuario}/Estructura_Asimetrica..."
 
-sudo mkdir -p Estructura_Asimetrica/correo/{cartas_1,cartas_10,cartas_100}
+# Crear dentro de los directorios clientes/ y correo/ carpetas anidadas de cartas del 1 al 100
+sudo mkdir -p /home/${usuario}/Estructura_Asimetrica/correo/cartas_{1..100}
+sudo mkdir -p /home/${usuario}/Estructura_Asimetrica/cliente/cartas_{1..100}
 
-sudo mkdir -p Estructura_Asimetrica/clientes/{cartas_1,cartas_10,cartas_100}
-#Crear dentro de los directorios cientes/ y correo/ carpetas anidadas de cartas de 10 a 99
-sudo mkdir -p Estructura_Asimetrica/correo/{cartas_{11..19},cartas_2}
-sudo mkdir -p Estructura_Asimetrica/clientes/{cartas_{11..19},cartas_2}
-sudo mkdir -p Estructura_Asimetrica/correo/{cartas_{20..29},cartas_3}
-sudo mkdir -p Estructura_Asimetrica/clientes/{cartas_{20..29},cartas_3}
-sudo mkdir -p Estructura_Asimetrica/correo/{cartas_{30..39},cartas_4}
-sudo mkdir -p Estructura_Asimetrica/clientes/{cartas_{30..39},cartas_4}
-sudo mkdir -p Estructura_Asimetrica/correo/{cartas_{40..49},cartas_5}
-sudo mkdir -p Estructura_Asimetrica/clientes/{cartas_{40..49},cartas_5}
-sudo mkdir -p Estructura_Asimetrica/correo/{cartas_{50..59},cartas_6}
-sudo mkdir -p Estructura_Asimetrica/clientes/{cartas_{50..59},cartas_6}
-sudo mkdir -p Estructura_Asimetrica/correo/{cartas_{60..69},cartas_7}
-sudo mkdir -p Estructura_Asimetrica/clientes/{cartas_{60..69},cartas_7}
-sudo mkdir -p Estructura_Asimetrica/correo/{cartas_{70..79},cartas_8}
-sudo mkdir -p Estructura_Asimetrica/clientes/{cartas_{70..79},cartas_8}
-sudo mkdir -p Estructura_Asimetrica/correo/{cartas_{80..89},cartas_9}
-sudo mkdir -p Estructura_Asimetrica/clientes/{cartas_{80..89},cartas_9}
-sudo mkdir -p Estructura_Asimetrica/correo/cartas_{90..99}
-sudo mkdir -p Estructura_Asimetrica/clientes/cartas_{90..99}
-#Luego de crear todas las carpetas de cartas, se crean las de carteros del 1 al 10 dentro del directorio correo/
-sudo mkdir -p Estructura_Asimetrica/correo/{carteros_1,carteros_10}
-sudo mkdir -p Estructura_Asimetrica/correo/{carteros_1,carteros_10}
-sudo mkdir -p Estructura_Asimetrica/correo/carteros_{1..9}
+# Luego de crear todas las carpetas de cartas, se crean las de carteros del 1 al 10 dentro del directorio correo/
+sudo mkdir -p /home/${usuario}/Estructura_Asimetrica/correo/carteros_{1..10}
 
-echo "Ejecuntando..."
+echo "Ejecutando..."
 echo "Espere un momento.."
 
 sleep 2
 
 echo "Resultado:"
-#Por ultimo ejecutamos el comando para validar el funcionamiento.
-tree Estructura_Asimetrica/ --noreport | pr -T -s' ' -w 80 --column 4
+# Por último, ejecutamos el comando para validar el funcionamiento.
+tree /home/${usuario}/Estructura_Asimetrica/ --noreport | pr -T -s' ' -w 80 --column 4
+
+# Ajustar permisos del directorio principal y sus subdirectorios
+sudo chown -R "${usuario}:${usuario}" /home/${usuario}/Estructura_Asimetrica
+chmod -R 755 /home/${usuario}/Estructura_Asimetrica
+
